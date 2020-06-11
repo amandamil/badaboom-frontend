@@ -560,4 +560,17 @@ $.Velocity
         calls: [ 
             [ { translateY: '-50%'}, 1]
         ]
-    });
+	});
+	
+
+// Other scripts
+(function() {
+	var word = 0
+	var words = ['Quicker', 'Smarter', 'New'];
+	var wordEl = document.querySelector('#dynamic-word');
+	setTimeout(function() {
+		if (word > words.length - 1) word = 0;
+		wordEl.innerText = words[word];
+		word++;
+	}, 2000);
+})();

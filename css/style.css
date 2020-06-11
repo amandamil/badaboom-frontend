@@ -1,4 +1,22 @@
 /* MIXINs */
+@font-face {
+  font-family: 'SharpGroteskLight25';
+  src: url("/fonts/SharpGroteskLight25.eot");
+  src: url("/fonts/SharpGroteskLight25.eot?#iefix") format("embedded-opentype"), url("/fonts/SharpGroteskLight25.woff2") format("woff2"), url("/fonts/SharpGroteskLight25.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SharpGroteskLight25';
+  src: url("/fonts/SharpGroteskSmBold25.eot");
+  src: url("/fonts/SharpGroteskSmBold25.eot?#iefix") format("embedded-opentype"), url("/fonts/SharpGroteskSmBold25.woff2") format("woff2"), url("/fonts/SharpGroteskSmBold25.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* -------------------------------- 
 
 Primary style
@@ -13,9 +31,8 @@ html {
 }
 
 body {
-  font-size: 1.6rem;
-  font-family: "Open Sans", sans-serif;
-  color: #ffffff;
+  font-family: 'SharpGroteskLight25', sans-serif;
+  color: #8c87a5;
   background-color: black;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -35,7 +52,7 @@ body::before {
 }
 
 a {
-  color: #267481;
+  color: #8c87a5;
   text-decoration: none;
 }
 
@@ -54,14 +71,8 @@ Main Components
   height: 100vh;
 }
 
-.cd-section h2 {
-  line-height: 100vh;
-  text-align: center;
-  font-size: 2.4rem;
-}
-
 .cd-section:first-of-type > div {
-  background-color: #2b334f;
+  background-color: #9f9f9f;
 }
 
 .cd-section:first-of-type > div::before {
@@ -75,68 +86,38 @@ Main Components
   font-weight: bold;
   font-size: 1.3rem;
   text-transform: uppercase;
-  color: tint(#2b334f, 30%);
+  color: tint(#9f9f9f, 30%);
 }
 
 .cd-section:nth-of-type(2) > div {
-  background-color: #2e5367;
+  background-color: #dbfc8a;
 }
 
 .cd-section:nth-of-type(3) > div {
-  background-color: #267481;
+  background-color: #8c87a5;
 }
 
 .cd-section:nth-of-type(4) > div {
-  background-color: #fcb052;
+  background-color: #8c87a5;
 }
 
 .cd-section:nth-of-type(5) > div {
-  background-color: #f06a59;
+  background-color: #8c87a5;
 }
 
-[data-animation="parallax"] .cd-section > div,
-[data-animation="fixed"] .cd-section > div,
-[data-animation="opacity"] .cd-section > div {
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
+.cd-section:nth-of-type(6) > div {
+  background-color: #8c87a5;
 }
 
-[data-animation="parallax"] .cd-section:first-of-type > div,
-[data-animation="fixed"] .cd-section:first-of-type > div,
-[data-animation="opacity"] .cd-section:first-of-type > div {
-  background-image: url("../img/img-1.jpg");
+.cd-section:nth-of-type(7) > div {
+  background-color: #8c87a5;
 }
 
-[data-animation="parallax"] .cd-section:nth-of-type(2) > div,
-[data-animation="fixed"] .cd-section:nth-of-type(2) > div,
-[data-animation="opacity"] .cd-section:nth-of-type(2) > div {
-  background-image: url("../img/img-2.jpg");
-}
-
-[data-animation="parallax"] .cd-section:nth-of-type(3) > div,
-[data-animation="fixed"] .cd-section:nth-of-type(3) > div,
-[data-animation="opacity"] .cd-section:nth-of-type(3) > div {
-  background-image: url("../img/img-3.jpg");
-}
-
-[data-animation="parallax"] .cd-section:nth-of-type(4) > div,
-[data-animation="fixed"] .cd-section:nth-of-type(4) > div,
-[data-animation="opacity"] .cd-section:nth-of-type(4) > div {
-  background-image: url("../img/img-4.jpg");
-}
-
-[data-animation="parallax"] .cd-section:nth-of-type(5) > div,
-[data-animation="fixed"] .cd-section:nth-of-type(5) > div,
-[data-animation="opacity"] .cd-section:nth-of-type(5) > div {
-  background-image: url("../img/img-5.jpg");
+.cd-section:nth-of-type(8) > div {
+  background-color: #3c3c3b;
 }
 
 @media only screen and (min-width: 1050px) {
-  .cd-section h2 {
-    font-size: 4rem;
-    font-weight: 300;
-  }
   [data-hijacking="on"] .cd-section {
     opacity: 0;
     visibility: hidden;
@@ -165,7 +146,7 @@ Main Components
   [data-animation="scaleDown"] .cd-section > div,
   [data-animation="gallery"] .cd-section > div,
   [data-animation="catch"] .cd-section > div {
-    box-shadow: 0 0 0 rgba(25, 30, 46, 0.4);
+    box-shadow: 0 0 0 rgba(134, 134, 134, 0.4);
   }
   [data-animation="opacity"] .cd-section.visible > div {
     z-index: 1;
@@ -195,6 +176,9 @@ Main Components
   }
   [data-hijacking="on"] .cd-section > div {
     position: absolute;
+    height: 100%;
+    display: flex;
+    align-items: center;
   }
   [data-animation="rotate"] .cd-section > div {
     -webkit-transform-origin: center bottom;
@@ -241,4 +225,124 @@ Main Components
   .cd-vertical-nav {
     display: block;
   }
+}
+
+.header {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 20px 40px;
+}
+
+.header__logo {
+  flex-grow: 1;
+  font-size: 18px;
+  font-weight: 600;
+  color: #dbfc8a;
+}
+
+.header__navigation ul {
+  display: flex;
+  align-items: center;
+}
+
+.header__navigation ul li a {
+  color: #dbfc8a;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  background-color: transparent;
+  padding: 4px 10px;
+  transition: all .3s ease;
+}
+
+.header__navigation ul li a:hover {
+  background-color: #3c3c3b;
+}
+
+.header__navigation ul li.active a {
+  background-color: #3c3c3b;
+}
+
+.container {
+  width: 90%;
+  margin: auto;
+}
+
+.section-title {
+  display: block;
+  margin: auto;
+  font-size: 40px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.section-title--first {
+  color: #dbfc8a;
+}
+
+.section-title--first span {
+  color: #3c3c3b;
+}
+
+.section-title--second {
+  width: 50%;
+  text-align: left;
+  text-transform: initial;
+  color: #3c3c3b;
+  margin: 0;
+}
+
+.section-title--second span {
+  display: block;
+  color: #8c87a5;
+}
+
+.section-title--second span div {
+  display: inline;
+}
+
+.footer {
+  position: fixed;
+  z-index: 1000;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+}
+
+.footer__button {
+  background-color: transparent;
+  border: 2px #dbfc8a solid;
+  padding: 15px 25px;
+  color: #dbfc8a;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-family: 'SharpGroteskLight25', sans-serif;
+  transition: all .3s ease;
+}
+
+.footer__button:hover {
+  cursor: pointer;
+  background-color: #dbfc8a;
+  color: #3c3c3b;
+}
+
+.footer__form-button {
+  display: block;
+  background-color: #267DDD;
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
