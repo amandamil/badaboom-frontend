@@ -26,11 +26,9 @@
 	</header>
 
 	<footer class="footer">
-		<button class="footer__button">
-			Build your collection
+		<button class="footer__button" onclick="openTypeformPopup()">
+			Request Access
 		</button>
-
-		<a class="footer__form-button" href="https://form.typeform.com/to/jBRdVd" data-mode="popup" target="_blank"></a>
 	</footer>
 
 	<main>
@@ -47,7 +45,7 @@
 		<section class="cd-section">
 			<div>
 				<div class="container">
-					<h2 class="section-title section-title--second">
+					<h2 class="section-title section-title--small section-title--second">
 						<span>The <div id="dynamic-word">Quicker</div> way</span>
 						With instant access to the world’s leading manufactures, you
 						can build and produce bespoke eyewear collections
@@ -58,31 +56,56 @@
 
 		<section class="cd-section">
 			<div>
-				<h2>Section 3</h2>
+				<div class="container">
+					<h2 class="section-title section-title--small section-title--right">
+						Fill out a few questions about your label’s brand and target customer
+					</h2>
+				</div>
+			</div>
+		</section>
+		
+		<section class="cd-section">
+			<div>
+				<div class="container">
+					<h2 class="section-title section-title--small section-title--left">
+						Based on your inputs, out algorithm automatically searches our portfolio and presents products that are specific to your needs
+					</h2>
+				</div>
+			</div>
+		</section>
+		
+		<section class="cd-section">
+			<div>
+				<div class="container">
+					<h2 class="section-title section-title--small section-title--right">
+						Select styles, colours and add bespoke design details to balance your collection
+					</h2>
+				</div>
+			</div>
+		</section>
+		
+		<section class="cd-section">
+			<div>
+				<div class="container">
+					<h2 class="section-title section-title--small section-title--left">
+						Place your order and let us handle all factory coordination, production management, quality control and delivery
+					</h2>
+				</div>
 			</div>
 		</section>
 
 		<section class="cd-section">
 			<div>
-				<h2>Section 4</h2>
-			</div>
-		</section>
-
-		<section class="cd-section">
-			<div>
-				<h2>Section 5</h2>
-			</div>
-		</section>
-
-		<section class="cd-section">
-			<div>
-				<h2>Section 6</h2>
-			</div>
-		</section>
-
-		<section class="cd-section">
-			<div>
-				<h2>Section 7</h2>
+				<div class="container">
+					<h2 class="section-title section-title--gray">
+						<div class="section-title__animation-container" id="split-animation">
+							<span class="left">BADA</span>
+							<span class="right">BOOM</span>
+							<div class="line line--one"></div>
+							<div class="line line--two"></div>
+						</div>
+					</h2>
+				</div>
 			</div>
 		</section>
 
@@ -93,14 +116,42 @@
 		</section>
 	</main>
 
+	<div class="modal" id="typeFormPopup">
+		<div class="modal__body">
+			<div class="modal__close" onclick="closeTypeformPopup()">
+				<img src="/images/close.png" alt="close icon">
+			</div>
+			<iframe src="https://form.typeform.com/to/jBRdVd" frameborder="0"></iframe>
+		</div>
+	</div>
+
 	<script src="js/jquery-2.1.4.js"></script>
 	<script src="js/velocity.min.js"></script>
 	<script src="js/velocity.ui.min.js"></script>
+
+	<script src="js/object-watch.js"></script>
+	<script src="js/CSSPlugin.min.js"></script>
+	<script src="js/EasePack.min.js"></script>
+	<script src="js/TweenLite.min.js"></script>
+	<script src="js/TimelineLite.min.js"></script>
+	<script src="js/jquery.gsap.min.js"></script>
+
 	<script src="js/main.js"></script>
 
 	<!-- Typeform button script -->
 	<script>
 		(function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm_share", b="https://embed.typeform.com/"; if(!gi.call(d,id)){ js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })()
+	</script>
+
+	<!-- Intercom -->
+	<script>
+		window.intercomSettings = {
+			app_id: "ymtqbpoy"
+		};
+	</script>
+	<script>
+		// We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/ymtqbpoy'
+		(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/ymtqbpoy';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
 	</script>
 </body>
 </html>

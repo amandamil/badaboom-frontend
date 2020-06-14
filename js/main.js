@@ -1,10 +1,13 @@
 jQuery(document).ready(function($){
+	var watcherVars = {
+		actual: 1
+	};
+
 	//variables
 	var hijacking= $('body').data('hijacking'),
 		animationType = $('body').data('animation'),
 		delta = 0,
         scrollThreshold = 5,
-        actual = 1,
         animating = false;
     
     //DOM elements
@@ -149,7 +152,7 @@ jQuery(document).ready(function($){
             	if( hijacking == 'off') $(window).on('scroll', scrollAnimation);
             });
             
-            actual = actual - 1;
+            watcherVars.actual = watcherVars.actual - 1;
         }
 
         resetScroll();
@@ -173,7 +176,7 @@ jQuery(document).ready(function($){
             	if( hijacking == 'off') $(window).on('scroll', scrollAnimation);
             });
 
-            actual = actual +1;
+            watcherVars.actual = watcherVars.actual + 1;
         }
         resetScroll();
     }
@@ -420,6 +423,78 @@ jQuery(document).ready(function($){
 
 		return [translateY, scale, rotateX, opacity, boxShadowBlur]; 
 	}
+	
+	/**
+	 * ----------------
+	 * Split text animation - Badaboom
+	 * ----------------
+	 */
+	var splitAnimationTl = new TimelineLite({ paused: true });
+	const textLeftEl = $('#split-animation .left');
+	const textRigthEl = $('#split-animation .right');
+	const lineEls = $('#split-animation .line');
+	const lineOneEl = $('#split-animation .line--one');
+	const lineTwoEl = $('#split-animation .line--two');
+	const offset = (textLeftEl.width() + textRigthEl.width()) / 8;
+	const offsetHeight = textLeftEl.height() / 2;
+	TweenLite.set(textLeftEl, { x: offset, opacity: 0 });
+	TweenLite.set(textRigthEl, { x: -offset, opacity: 0 });
+	splitAnimationTl
+		.to(lineEls, 1, { width: "100%", opacity: 1, delay: 3, ease: Power2.out }, 0, 2)
+		.to(lineOneEl, 0.5, { y: -offsetHeight, ease: Power2.out })
+		.to(lineTwoEl, 0.5, { y: offsetHeight, ease: Power2.out })
+		.staggerTo([textLeftEl, textRigthEl], 1.5, { x: 0, opacity: 1, ease: Power2.out })
+		.to(lineEls, 0.5, { opacity: 0 }, '-=0.5');
+
+	/**
+	 * ----------------
+	 * Watchers
+	 * ----------------
+	 */
+	watcherVars.watch('actual', function(prop, oldValue, newValue) {
+		changeIntercomStyle(newValue);
+		changeHeaderFooterStyle(newValue);
+		handleBrandAnimation(splitAnimationTl, newValue);
+		return newValue;
+	});
+
+	/**
+	 * ----------------
+	 * Sections style changes
+	 * ----------------
+	 */
+	function changeIntercomStyle(step) {
+		var sectionHiddenButton = [8];
+		if (sectionHiddenButton.indexOf(step) >= 0) {
+			$('.intercom-launcher').hide();
+			return;
+		} else {
+			$('.intercom-launcher').show();
+		}
+
+		var sectionGrayButton = [1, 2];
+		if (sectionGrayButton.indexOf(step) < 0) {
+			$('.intercom-launcher').addClass('green');
+		} else {
+			$('.intercom-launcher').removeClass('green');
+		}
+	}
+
+	function changeHeaderFooterStyle(step) {
+		var inversionSections = [2];
+		if (inversionSections.indexOf(step) >= 0) {
+			$('.header, .footer').addClass('inversion');
+		} else {
+			$('.header, .footer').removeClass('inversion');
+		}
+	}
+
+	function handleBrandAnimation(tl, step) {
+		var brandSection = 7;
+		if (step !== brandSection) {
+			tl.play();
+		}
+	}
 });
 
 /* Custom effects registration - feature available in the Velocity UI pack */
@@ -563,14 +638,34 @@ $.Velocity
 	});
 	
 
-// Other scripts
+/**
+ * ----------------
+ * Other scripts
+ * ----------------
+ */
 (function() {
-	var word = 0
+	var word = 1;
 	var words = ['Quicker', 'Smarter', 'New'];
-	var wordEl = document.querySelector('#dynamic-word');
-	setTimeout(function() {
+	setInterval(function() {
 		if (word > words.length - 1) word = 0;
-		wordEl.innerText = words[word];
+		document.querySelector('#dynamic-word').innerText = words[word];
 		word++;
 	}, 2000);
 })();
+
+/**
+ * ----------------
+ * Type form popup
+ * ----------------
+ */
+function openTypeformPopup() {
+	$('#typeFormPopup')
+		.animate({ display: 'block' })
+		.animate({ opacity: 1 }, 500);
+}
+
+function closeTypeformPopup() {
+	$('#typeFormPopup')
+		.animate({ opacity: 0 }, 500)
+		.animate({ display: 'none' });
+}
