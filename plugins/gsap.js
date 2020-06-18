@@ -1,0 +1,5 @@
+require('gsap/TweenMax')
+require('gsap/TimelineMax')
+require('gsap/EasePack')
+require('../utils/SplitText')
+// require('gsap-then/dist/gsap-then.common-js')

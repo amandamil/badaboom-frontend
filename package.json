@@ -1,21 +1,35 @@
 {
-  "name": "badaboom",
+  "name": "Badaboom",
   "version": "1.0.0",
-  "description": "landing page",
-  "main": "index.js",
-  "scripts": {
-    "dev": "./node_modules/.bin/gulp scss:watch"
-  },
+  "description": "Site description",
   "author": "Jesus Santos",
-  "license": "ISC",
-  "browserslist": [
-    "last 1 version",
-    "> 1%"
-  ],
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
+  },
+  "dependencies": {
+    "@nuxtjs/svg-sprite": "^0.4.10",
+    "gsap": "2.0.2",
+    "gsap-then": "^3.0.0",
+    "intersection-observer": "^0.10.0",
+    "lodash": "^4.17.15",
+    "nuxt": "^2.0.0",
+    "vue-fullpage.js": "^0.1.5"
+  },
   "devDependencies": {
-    "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^7.0.1",
-    "gulp-sass": "^4.1.0",
-    "node-sass": "^4.14.1"
+    "@nuxtjs/eslint-config": "^2.0.0",
+    "@nuxtjs/eslint-module": "^1.0.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^6.1.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-nuxt": ">=0.4.2",
+    "eslint-plugin-prettier": "^3.1.2",
+    "node-sass": "^4.14.1",
+    "prettier": "^1.19.1",
+    "sass-loader": "^8.0.2"
   }
 }
