@@ -30,6 +30,6 @@ module.exports = {
     'Power3': true,
     'Power4': true,
     'Sine': true,
-    'CustomEase': true
+    'SteppedEase': true
   }
 }

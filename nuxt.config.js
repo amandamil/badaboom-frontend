@@ -51,6 +51,10 @@ export default {
       ssr: false
     },
     {
+      src: '~/plugins/typed-js.js',
+      ssr: false
+    },
+    {
       src: '~/plugins/intersection-observer.js',
       ssr: false
     },

@@ -18,7 +18,8 @@
     "intersection-observer": "^0.10.0",
     "lodash": "^4.17.15",
     "nuxt": "^2.0.0",
-    "vue-fullpage.js": "^0.1.5"
+    "vue-fullpage.js": "^0.1.5",
+    "vue-typed-js": "^0.1.2"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.0",

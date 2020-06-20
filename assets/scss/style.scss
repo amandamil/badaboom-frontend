@@ -236,6 +236,8 @@ body {
 }
 
 .section {
+	position: relative;
+
 	&--first {
 		.container {
 			background: url('~assets/images/remove/header-background.png');

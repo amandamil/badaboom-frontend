@@ -3,6 +3,7 @@
     <full-page ref="fullpage" :options="options">
       <FirstSection />
       <SecondSection />
+      <ThirdSection />
     </full-page>
   </no-ssr>
 </template>
@@ -13,13 +14,15 @@ import FullPageMixin from './mixins/fullpage'
 
 import FirstSection from '~/components/sections/FirstSection'
 import SecondSection from '~/components/sections/SecondSection'
+import ThirdSection from '~/components/sections/ThirdSection'
 
 export default {
   name: 'Body',
   components: {
     NoSsr,
     FirstSection,
-    SecondSection
+    SecondSection,
+    ThirdSection
   },
   mixins: [FullPageMixin],
   mounted() {

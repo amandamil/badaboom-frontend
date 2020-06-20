@@ -1,10 +1,4 @@
 import Vue from 'vue'
-// import SplitText from '~/utils/SplitText'
-
-// if (process.browser) {
-//   require('gsap/TweenMax')
-//   require('gsap/TimelineMax')
-// }
 
 const animations = {
   'fade-in': {
@@ -26,6 +20,10 @@ const animations = {
   split: {
     start: { opacity: 0, y: 30 },
     finish: { opacity: 1, x: 0 }
+  },
+  'typing-effect': {
+    start: { display: 'block' },
+    finish: { display: 'none' }
   },
   'move-up': {
     start: { y: 10 },
@@ -72,10 +70,8 @@ function splitTextAnimation(el, options) {
   const tl = new TimelineMax({ delay })
 
   let nodes = el
-  if (!Vue.prototype.$resp.smDown) {
-    const text = new SplitText(el, { type: splitTextMode })
-    nodes = text[splitTextMode]
-  }
+  const text = new SplitText(el, { type: splitTextMode })
+  nodes = text[splitTextMode]
 
   tl.set(nodes, { visibility: 'visible' })
   tl.staggerFrom(nodes, duration, animations[name].start, iterateDelay)
