@@ -3,6 +3,7 @@
     <Header :inversion="isInversion" />
     <nuxt />
     <Footer :inversion="isInversion" />
+
     <transition name="fade" mode="in-out">
       <Modal v-show="isShow" @close-modal="closeModal" />
     </transition>
