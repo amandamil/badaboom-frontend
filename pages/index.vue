@@ -45,10 +45,14 @@ export default {
   mixins: [FullPageMixin],
   mounted() {
     this.$root.$on('go-next', this.goToNext)
+    this.$root.$on('setAllowScrolling', this.setAllowScrollingHandler)
   },
   methods: {
     goToNext() {
       this.$refs.fullpage.api.moveSectionDown()
+    },
+    setAllowScrollingHandler(value) {
+      this.$refs.fullpage.api.setAllowScrolling(value)
     }
   }
 }

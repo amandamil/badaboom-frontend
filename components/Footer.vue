@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <button class="footer__button" @click="$root.$emit('openModal')">
+    <button class="footer__button" @click="openModal">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="14.999"
@@ -40,6 +40,9 @@ export default {
   methods: {
     goToNext() {
       this.$root.$emit('go-next')
+    },
+    openModal() {
+      this.$root.$emit('openModal')
     }
   }
 }

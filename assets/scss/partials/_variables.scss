@@ -3,14 +3,16 @@ $green: #dbfc8a;
 $green-light: #D1FF79;
 $gray: #3c3c3b;
 $gray-light: #767676;
+$silver: #9F9F9E;
 $purple: #8c87a5;
 
 // Elements z-index
 $mobileMenuLogoIndex: 100;
 $mobileMenuCloseIndex: 99;
 
-$headerIndex: 1000;
+$headerIndex: 1100;
 $footerIndex: 1000;
+$intercomeIndex: 900;
 $navigationMobIndex: 1100;
 $menuMobIndex: 1110;
 $logoMobIndex: $menuMobIndex;
