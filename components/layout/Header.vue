@@ -1,4 +1,5 @@
 <template>
+  <!-- eslint-disable prettier/prettier -->
   <header :class="['header', { 'is-open': isOpen }]">
     <div class="header__logo">
       <transition name="fade" mode="out-in">
@@ -25,16 +26,17 @@
       <div ref="menuLogo" class="header__navigation-logo">
         <svg-icon name="logo" />
       </div>
-      <!-- eslint-disable-next-line prettier/prettier -->
       <div ref="menuButton" class="header__navigation-button" @click="openModal">
         <svg-icon name="arrow-right-gray" />GET IN TOUCH
       </div>
     </nav>
     <div class="header__menu">
       <div class="header__menu-button">
-        <!-- eslint-disable-next-line prettier/prettier -->
         <svg-icon ref="closeIcon" name="close-menu" class="close" @click="closeMenu" />
-        <svg-icon ref="openIcon" name="open-menu" @click="openMenu" />
+        <transition name="fade" mode="out-in">
+          <svg-icon v-if="inversion" ref="openIcon" name="open-menu-gray" @click="openMenu" />
+          <svg-icon v-else ref="openIcon" name="open-menu" @click="openMenu" />
+        </transition>
       </div>
     </div>
   </header>

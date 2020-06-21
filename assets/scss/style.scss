@@ -536,6 +536,15 @@ body {
 			font-size: 26px;
 		}
 	}
+
+	.section {
+		&--what-is-it {
+			.sunglass-flashing {
+				width: 400px;
+				height: 200px;
+			}
+		}
+	}
 }
 
 // Large devices (desktops, 992px and down)
