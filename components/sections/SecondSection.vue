@@ -10,8 +10,8 @@
             <span class="typing" />
           </vue-typed-js>
           <p>
-            With instant access to the world’s leading manufactures, you can
-            build and produce bespoke eyewear collections
+            Our technology enables you to create a highly commercial eyewear
+            label that is defined by the essence of your brand DNA.
           </p>
         </div>
       </h2>

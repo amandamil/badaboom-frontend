@@ -551,11 +551,6 @@ body {
 @media screen and (max-width: 992px) {
 	.header {	
 		padding: 15px;
-	
-		// &__logo {
-		// 	position: relative;
-    	// 	z-index: $logoMobIndex;
-		// }
 
 		&__navigation {
 			display: none;
@@ -609,11 +604,58 @@ body {
 	
 	.section-title {
 		font-size: 31px;
+
+		&--small {
+			font-size: 18px;
+		}
+	}
+
+	.section {
+		&--what-is-it {
+			.sunglass-flashing {
+				width: 300px;
+				height: 150px;
+			}
+		}
 	}
 }
 
 // Medium devices (tablets, 768px and down)
 @media screen and (max-width: 768px) {
+	.section {
+		&--second {
+			width: 100%;
+			justify-content: center;
+		}
+
+		&--what-is-it {
+			.container {
+				flex-direction: column-reverse;
+				justify-content: center;
+			}
+
+			.section-title {
+				&--second {
+					width: 550px;
+					max-width: 100%;
+					text-align: center;
+					font-size: 30px;
+				}
+			}
+
+			.typed-element {
+				justify-content: center;
+			}
+
+			.section {
+				&__image {
+					flex: inherit;
+					margin-bottom: 40px;
+				}
+			}
+		}
+	}
+
 	.modal {
 		padding: 10px;
 
@@ -636,7 +678,14 @@ body {
 
 	.footer {
 		&__button {
-			padding: 20px 55px;
+			padding: 16px 55px;
 		}
+	}
+
+	.intercom-lightweight-app-launcher,
+	.intercom-launcher-frame {
+		transform: scale(0.9);
+		bottom: 15px !important;
+		right: 15px !important;
 	}
 }
