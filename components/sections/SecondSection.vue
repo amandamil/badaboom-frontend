@@ -1,5 +1,5 @@
 <template>
-  <section class="section section--green">
+  <section class="section section--green section--what-is-it">
     <div class="container container--text-center">
       <h2
         v-animate="animationOption"
@@ -15,13 +15,21 @@
           </p>
         </div>
       </h2>
+      <div class="section__image">
+        <SunglassFlashing />
+      </div>
     </div>
   </section>
 </template>
 
 <script>
+import SunglassFlashing from '~/components/SunglassFlashing'
+
 export default {
   name: 'SecondSection',
+  components: {
+    SunglassFlashing
+  },
   data() {
     return {
       words: ['The Quicker way', 'The Smarter way', 'The New way'],

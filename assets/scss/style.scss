@@ -262,13 +262,13 @@ body {
 
 .inversion {
 	.header:not(.is-open) {
-		&__logo {
+		.header__logo {
 			.icon {
 				fill: $gray;
 			}
 		}
 
-		&__navigation {
+		.header__navigation {
 			li {
 				a {
 					color: $gray;
@@ -347,6 +347,26 @@ body {
 			background-color: $purple;
 		}
 	}
+
+	&--what-is-it {
+		.section {
+			&__image {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				flex: 1;
+			}
+		}
+
+		.sunglass-flashing {
+			width: 570px;
+  			height: 300px;
+		}
+	}
+}
+
+.fp-scroller {
+	min-height: 100%;
 }
 
 .section-title {
@@ -392,6 +412,8 @@ body {
 		width: 50%;
 		color: $gray;
 		margin: 0;
+		display: flex;
+		justify-content: flex-end;
 
 		span {
 			display: block;
@@ -400,6 +422,12 @@ body {
 			div {
 				display: inline;
 			}
+		}
+
+		.text {
+			width: 720px;
+			max-width: 100%;
+			// margin: auto;
 		}
 	}
 
@@ -500,7 +528,15 @@ body {
 }
 
 // Extra large devices (large desktops, 1200px and down)
-// @media screen and (max-width: 1200px) {}
+@media screen and (max-width: 1200px) {
+	.section-title {
+		font-size: 46px;
+
+		&--small {
+			font-size: 26px;
+		}
+	}
+}
 
 // Large devices (desktops, 992px and down)
 @media screen and (max-width: 992px) {
