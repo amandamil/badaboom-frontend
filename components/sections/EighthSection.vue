@@ -3,7 +3,7 @@
     <div class="container container--text-center">
       <h2
         v-animate="animationOption"
-        class="section-title section-title--small section-title--right"
+        class="section-title section-title--small section-title--second"
       >
         Fill out a few questions about your label’s brand and target customer
       </h2>
@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: 'ThirdSection',
+  name: 'EighthSection',
   data() {
     return {
       animationOption: {

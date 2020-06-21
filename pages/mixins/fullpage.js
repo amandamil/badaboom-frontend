@@ -3,7 +3,17 @@ export default {
     return {
       options: {
         menu: '#menu',
-        anchors: ['page1', 'page2', 'page3'],
+        anchors: [
+          'page1',
+          'page2',
+          'page3',
+          'page4',
+          'page5',
+          'page6',
+          'page7',
+          'page8',
+          'page9'
+        ],
         scrollOverflow: true,
         scrollingSpeed: 1000,
         easing: 'none',

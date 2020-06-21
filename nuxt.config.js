@@ -5,7 +5,8 @@ export default {
    */
   head: {
     title: process.env.npm_package_name || '',
-    meta: [{
+    meta: [
+      {
         charset: 'utf-8'
       },
       {
@@ -18,16 +19,21 @@ export default {
         content: process.env.npm_package_description || ''
       }
     ],
-    link: [{
-      rel: 'icon',
-      type: 'image/x-icon',
-      href: '/favicon.ico'
-    }],
-    script: [{
-      src: '/js/typeform.js'
-    }, {
-      src: '/js/intercom.js'
-    }]
+    link: [
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: '/favicon.ico'
+      }
+    ],
+    script: [
+      {
+        src: '/js/typeform.js'
+      },
+      {
+        src: '/js/intercom.js'
+      }
+    ]
   },
   /*
    ** Customize the progress-bar color
@@ -42,7 +48,8 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{
+  plugins: [
+    {
       src: '~/plugins/fullpage.js',
       ssr: false
     },

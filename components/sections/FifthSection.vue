@@ -5,7 +5,8 @@
         v-animate="animationOption"
         class="section-title section-title--small section-title--right"
       >
-        Fill out a few questions about your label’s brand and target customer
+        Select styles, colours and add bespoke design details to balance your
+        collection
       </h2>
     </div>
   </section>
@@ -13,7 +14,7 @@
 
 <script>
 export default {
-  name: 'ThirdSection',
+  name: 'FifthSection',
   data() {
     return {
       animationOption: {

@@ -1,13 +1,3 @@
-// colors
-$color-1: #9f9f9f; // Pickled Bluewood
-$color-2: #dbfc8a; // San Juan
-$color-3: #8c87a5; // Lochinvar
-$color-4: #8c87a5; // Texas Rose
-$color-5: #8c87a5; // Burnt Sienna
-$color-6: #8c87a5; // White
-$color-7: #8c87a5; // White
-$color-8: #3c3c3b; // White
-
 // General colors
 $green: #dbfc8a;
 $green-light: #D1FF79;
@@ -15,6 +5,13 @@ $gray: #3c3c3b;
 $gray-light: #767676;
 $purple: #8c87a5;
 
-// fonts 
+// Elements z-index
+$mobileMenuLogoIndex: 100;
+$mobileMenuCloseIndex: 99;
 
-$primary-font: 'Open Sans', sans-serif;
+$headerIndex: 1000;
+$footerIndex: 1000;
+$navigationMobIndex: 1100;
+$menuMobIndex: 1110;
+$logoMobIndex: $menuMobIndex;
+$modalIndex: 5000;

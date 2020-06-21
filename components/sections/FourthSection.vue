@@ -3,9 +3,10 @@
     <div class="container container--text-center">
       <h2
         v-animate="animationOption"
-        class="section-title section-title--small section-title--right"
+        class="section-title section-title--small section-title--left"
       >
-        Fill out a few questions about your label’s brand and target customer
+        Based on your inputs, out algorithm automatically searches our portfolio
+        and presents products that are specific to your needs
       </h2>
     </div>
   </section>
@@ -13,7 +14,7 @@
 
 <script>
 export default {
-  name: 'ThirdSection',
+  name: 'FourthSection',
   data() {
     return {
       animationOption: {

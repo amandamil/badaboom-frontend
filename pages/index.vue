@@ -4,6 +4,12 @@
       <FirstSection />
       <SecondSection />
       <ThirdSection />
+      <FourthSection />
+      <FifthSection />
+      <SixthSection />
+      <SeventhSection />
+      <EighthSection />
+      <NinethSection />
     </full-page>
   </no-ssr>
 </template>
@@ -15,6 +21,12 @@ import FullPageMixin from './mixins/fullpage'
 import FirstSection from '~/components/sections/FirstSection'
 import SecondSection from '~/components/sections/SecondSection'
 import ThirdSection from '~/components/sections/ThirdSection'
+import FourthSection from '~/components/sections/FourthSection'
+import FifthSection from '~/components/sections/FifthSection'
+import SixthSection from '~/components/sections/SixthSection'
+import SeventhSection from '~/components/sections/SeventhSection'
+import EighthSection from '~/components/sections/EighthSection'
+import NinethSection from '~/components/sections/NinethSection'
 
 export default {
   name: 'Body',
@@ -22,7 +34,13 @@ export default {
     NoSsr,
     FirstSection,
     SecondSection,
-    ThirdSection
+    ThirdSection,
+    FourthSection,
+    FifthSection,
+    SixthSection,
+    SeventhSection,
+    EighthSection,
+    NinethSection
   },
   mixins: [FullPageMixin],
   mounted() {

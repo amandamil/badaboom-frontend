@@ -3,9 +3,10 @@
     <div class="container container--text-center">
       <h2
         v-animate="animationOption"
-        class="section-title section-title--small section-title--right"
+        class="section-title section-title--small section-title--left"
       >
-        Fill out a few questions about your label’s brand and target customer
+        Place your order and let us handle all factory coordination, production
+        management, quality control and delivery
       </h2>
     </div>
   </section>
@@ -13,7 +14,7 @@
 
 <script>
 export default {
-  name: 'ThirdSection',
+  name: 'SixthSection',
   data() {
     return {
       animationOption: {
