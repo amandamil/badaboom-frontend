@@ -12,7 +12,11 @@ export default {
           'page6',
           'page7',
           'page8',
-          'page9'
+          'page9',
+          'page10',
+          'page11',
+          'page12',
+          'page13'
         ],
         scrollOverflow: true,
         scrollingSpeed: 1000,

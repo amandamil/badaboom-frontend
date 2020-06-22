@@ -6,7 +6,7 @@ const animations = {
     finish: { opacity: 1 }
   },
   'fade-in-up': {
-    start: { opacity: 0, y: 20, force3D: false },
+    start: { opacity: 0, y: 30, force3D: false },
     finish: { opacity: 1, y: 0 }
   },
   'fade-in-right': {
@@ -18,12 +18,12 @@ const animations = {
     finish: { xPercent: 0 }
   },
   split: {
-    start: { opacity: 0, y: 30 },
-    finish: { opacity: 1, x: 0 }
+    start: { opacity: 0, y: 40 },
+    finish: { opacity: 1, y: 0 }
   },
-  'typing-effect': {
-    start: { display: 'block' },
-    finish: { display: 'none' }
+  'fade-in-scale': {
+    start: { opacity: 0, scale: 0.85 },
+    finish: { opacity: 1, scale: 1 }
   },
   'move-up': {
     start: { y: 10 },

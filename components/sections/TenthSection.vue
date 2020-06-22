@@ -4,11 +4,11 @@
       <div v-animate="animationOption" class="section-text">
         <h2 class="section-text__left">
           Who’s it for?
-          <div class="green">BUYERS</div>
+          <div class="green">PRODUCT MANAGERS</div>
         </h2>
         <p class="section-text__right">
-          Reduce time, travel and operation costs, whilst staying up to date
-          with the latest trends and products
+          With access to 1000’s of frames and logistics covered – you can focus
+          on designing the perfect collection
         </p>
       </div>
     </div>
@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: 'NinethSection',
+  name: 'TenthSection',
   data() {
     return {
       animationOption: {

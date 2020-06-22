@@ -10,6 +10,10 @@
       <SeventhSection />
       <EighthSection />
       <NinethSection />
+      <TenthSection />
+      <FeaturesSection />
+      <QuoteSection />
+      <SunglassesSection />
     </full-page>
   </no-ssr>
 </template>
@@ -27,6 +31,10 @@ import SixthSection from '~/components/sections/SixthSection'
 import SeventhSection from '~/components/sections/SeventhSection'
 import EighthSection from '~/components/sections/EighthSection'
 import NinethSection from '~/components/sections/NinethSection'
+import TenthSection from '~/components/sections/TenthSection'
+import FeaturesSection from '~/components/sections/FeaturesSection'
+import QuoteSection from '~/components/sections/QuoteSection'
+import SunglassesSection from '~/components/sections/SunglassesSection'
 
 export default {
   name: 'Body',
@@ -40,7 +48,11 @@ export default {
     SixthSection,
     SeventhSection,
     EighthSection,
-    NinethSection
+    NinethSection,
+    TenthSection,
+    FeaturesSection,
+    QuoteSection,
+    SunglassesSection
   },
   mixins: [FullPageMixin],
   mounted() {

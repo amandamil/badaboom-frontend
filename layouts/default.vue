@@ -2,7 +2,7 @@
   <div :class="inversionClass">
     <Header :inversion="isInversion" />
     <nuxt />
-    <Footer :inversion="isInversion" />
+    <Footer :inversion="isInversion" :hide-button="isHideButton" />
 
     <transition name="fade" mode="in-out">
       <Modal v-show="isShow" @close-modal="closeModal" />
@@ -25,12 +25,15 @@ export default {
     return {
       isShow: false,
       activeSection: 0,
-      inversionSections: [2, 11, 12, 13]
+      inversionSections: [2, 11, 13, 14]
     }
   },
   computed: {
     isInversion() {
       return this.inversionSections.includes(this.activeSection + 1)
+    },
+    isHideButton() {
+      return this.activeSection + 1 === 13
     },
     inversionClass() {
       return this.isInversion ? 'inversion' : ''

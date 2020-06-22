@@ -26,7 +26,7 @@ export default {
             el: '.text',
             options: {
               name: 'fade-in-up',
-              delay: 0.5,
+              delay: 1,
               duration: 1
             }
           }

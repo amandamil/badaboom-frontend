@@ -21,6 +21,7 @@ module.exports = {
   rules: {
   },
   globals: {
+    'TweenLite': true,
     'TweenMax': true,
     'TimelineMax': true,
     'SplitText': true,
@@ -30,6 +31,7 @@ module.exports = {
     'Power3': true,
     'Power4': true,
     'Sine': true,
+    'Back': true,
     'Bounce': true,
     'SteppedEase': true
   }

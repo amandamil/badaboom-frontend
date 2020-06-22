@@ -1,12 +1,15 @@
 <template>
-  <section class="section section--purple">
+  <section class="section section--gray">
     <div class="container container--text-center">
-      <h2
-        v-animate="animationOption"
-        class="section-title section-title--small section-title--second"
-      >
-        Fill out a few questions about your label’s brand and target customer
-      </h2>
+      <div v-animate="animationOption" class="section-text">
+        <h2 class="section-text__left">
+          Who’s it for?
+          <div class="green">BRAND OWNERS</div>
+        </h2>
+        <p class="section-text__right">
+          Create a beautiful and highly commercial private label quickly
+        </p>
+      </div>
     </div>
   </section>
 </template>
@@ -17,11 +20,29 @@ export default {
   data() {
     return {
       animationOption: {
-        options: {
-          name: 'fade-in-up',
-          delay: 0.5,
-          duration: 1
-        }
+        stagger: [
+          {
+            el: '.section-text__left',
+            options: {
+              name: 'split',
+              delay: 0.75,
+              duration: 1,
+              splitText: true,
+              splitTextMode: 'lines',
+              iterateDelay: 0.2
+            }
+          },
+          {
+            el: '.section-text__right',
+            options: {
+              name: 'split',
+              duration: 0.75,
+              splitText: true,
+              splitTextMode: 'lines',
+              iterateDelay: 0.2
+            }
+          }
+        ]
       }
     }
   }
