@@ -82,7 +82,7 @@ export default {
       }
 
       this.tl = new TimelineMax({ paused: true, delay: this.delay })
-      this.tl.staggerTo(this.$el.querySelectorAll('svg'), 0.5, options, 0.5)
+      this.tl.staggerTo(this.$el.querySelectorAll('svg'), 0.5, options, 0.25)
     },
     play() {
       this.tl.play()
@@ -91,7 +91,7 @@ export default {
       TweenMax.staggerTo(
         this.$el.querySelectorAll('.green'),
         0.5,
-        { delay: 1, backgroundColor: '#D1FF7A' },
+        { delay: 0.5, backgroundColor: '#D1FF7A' },
         0.25
       )
     },

@@ -31,17 +31,17 @@ export default {
             options: {
               name: 'split',
               delay: 0.75,
-              duration: 1,
+              duration: 0.75,
               splitText: true,
               splitTextMode: 'lines',
-              iterateDelay: 0.35
+              iterateDelay: 0.2
             }
           },
           {
             el: '.section-text__quote-author',
             options: {
               name: 'fade-in-up',
-              duration: 0.75
+              duration: 0.5
             }
           }
         ]

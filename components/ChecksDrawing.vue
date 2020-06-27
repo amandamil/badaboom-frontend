@@ -171,12 +171,13 @@ export default {
         '#icons-drawing #Path_192'
       ]
 
+      const ease = Power2.easeOut
       this.tl = new TimelineMax({ paused: true, delay: this.delay })
       this.tl
         .set(paths, { drawSVG: '0%' })
         .set(this.$el, { opacity: 0 })
-        .to(this.$el, 0.5, { opacity: 1 })
-        .staggerTo(paths, 0.5, { drawSVG: '100%' }, 0.5)
+        .to(this.$el, 0.25, { opacity: 1, ease })
+        .staggerTo(paths, 0.25, { drawSVG: '100%', ease }, 0.25)
     },
     play() {
       this.tl.play()

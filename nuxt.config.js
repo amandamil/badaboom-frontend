@@ -32,6 +32,9 @@ export default {
       },
       {
         src: '/js/intercom.js'
+      },
+      {
+        src: '/js/jquery-3.5.1.min.js'
       }
     ]
   },
@@ -63,6 +66,10 @@ export default {
     },
     {
       src: '~/plugins/intersection-observer.js',
+      ssr: false
+    },
+    {
+      src: '~/plugins/flickity.js',
       ssr: false
     },
     {

@@ -21,6 +21,7 @@ module.exports = {
   rules: {
   },
   globals: {
+    '$': true,
     'TweenLite': true,
     'TweenMax': true,
     'TimelineMax': true,

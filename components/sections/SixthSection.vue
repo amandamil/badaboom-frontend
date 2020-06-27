@@ -9,7 +9,7 @@
         management, quality control and delivery
       </h2>
       <div class="section__image">
-        <SquaresAnimation :squares="squares" :delay="1.5" />
+        <SquaresAnimation :squares="squares" :delay="1.25" />
       </div>
     </div>
   </section>
@@ -28,8 +28,8 @@ export default {
       squares: ['tool-square', 'sunglass-square', 'box-square', 'plane-square'],
       animationOption: {
         name: 'fade-in-up',
-        delay: 1,
-        duration: 1
+        delay: 0.75,
+        duration: 0.75
       }
     }
   }

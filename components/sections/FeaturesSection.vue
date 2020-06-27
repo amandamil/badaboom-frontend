@@ -1,17 +1,21 @@
 <template>
   <!-- eslint-disable prettier/prettier -->
-  <section class="section section--green" @inview="play">
+  <section class="section section--green section--feature-gray">
     <div class="container container--text-center">
       <div class="features">
-        <h2 v-animate="animationOption" class="features__title">What’s under the hood?</h2>
-        <div class="features__list">
-          <Feature
-            v-for="(feature, index) in features"
-            :key="index"
-            :image="feature.image"
-            :title="feature.title"
-            :paragraphs="feature.paragraphs"
-          />
+        <div class="features__wrapper">
+          <div class="section-start" />
+          <h2 v-animate="animationOption" class="features__title">What’s under the hood?</h2>
+          <div class="features__list">
+            <Feature
+              v-for="(feature, index) in features"
+              :key="index"
+              :image="feature.image"
+              :title="feature.title"
+              :paragraphs="feature.paragraphs"
+            />
+          </div>
+          <div class="section-end" />
         </div>
       </div>
     </div>
@@ -19,6 +23,7 @@
 </template>
 
 <script>
+import throttle from 'lodash/throttle'
 import Feature from '~/components/Feature'
 
 export default {
@@ -28,6 +33,7 @@ export default {
   },
   data() {
     return {
+      preventTransition: false,
       animationOption: {
         name: 'fade-in-up',
         duration: 0.75,
@@ -97,6 +103,41 @@ export default {
         }
       ]
     }
+  },
+  beforeDestroy() {
+    this.$el
+      .querySelector('.features')
+      .removeEventListener('scroll', this.throttleScrollHandler)
+  },
+  async mounted() {
+    await this.$nextTick()
+    this.$el
+      .querySelector('.features')
+      .addEventListener('scroll', this.throttleScrollHandler)
+  },
+  methods: {
+    throttleScrollHandler: throttle(
+      function() {
+        this.scrollHandler(...arguments)
+      },
+      500,
+      { leading: false }
+    ),
+    scrollHandler(e) {
+      const elHeight = $(this.$el).height()
+      const startOffset = $('.section-start').offset().top
+      const endOffset = $('.section-end').offset().top
+
+      if (endOffset < elHeight) {
+        this.$root.$emit('setBlockScroll', { down: false, up: false })
+        this.$root.$emit('go-next')
+      }
+
+      if (startOffset >= 0) {
+        this.$root.$emit('setBlockScroll', { down: false, up: false })
+        this.$root.$emit('go-prev')
+      }
+    }
   }
 }
 </script>
@@ -104,15 +145,50 @@ export default {
 <style lang="scss">
 @import '~/assets/scss/partials/_variables';
 
+.section {
+  &--feature-gray {
+    .container {
+      padding: 0;
+    }
+  }
+}
+
 .features {
+  height: 100%;
   width: 100%;
-  padding: 200px 0;
+  position: relative;
+  overflow: scroll;
+
+  .section-start {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    opacity: 0;
+    height: 1px;
+  }
+
+  .section-end {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    opacity: 0;
+    height: 1px;
+  }
 
   &__title {
     font-size: 44px;
     font-weight: 600;
     color: $gray;
     margin-bottom: 85px;
+  }
+
+  &__wrapper {
+    position: relative;
+    padding: 200px 5%;
   }
 
   &__list {

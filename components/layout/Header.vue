@@ -8,18 +8,9 @@
       </transition>
     </div>
     <nav ref="navigation" class="header__navigation">
-      <ul ref="menu">
-        <li>
-          <a href="#what-is-it">What is it?</a>
-        </li>
-        <li>
-          <a href="#who-does-it-works">Who does it work?</a>
-        </li>
-        <li>
-          <a href="#whos-it-for">Who's it for?</a>
-        </li>
-        <li>
-          <a href="#features">Features</a>
+      <ul id="menu" ref="menu">
+        <li v-for="(link, index) in navigation" :key="index">
+          <a :href="`#${link.href}`" @click="goToSection(link)">{{ link.text }}</a>
         </li>
       </ul>
       <div ref="circle" class="header__navigation-circle" />
@@ -43,6 +34,8 @@
 </template>
 
 <script>
+import isElement from 'lodash/isElement'
+
 export default {
   name: 'Header',
   props: {
@@ -54,7 +47,13 @@ export default {
   data() {
     return {
       tl: null,
-      isOpen: false
+      isOpen: false,
+      navigation: [
+        { href: 'what-is-it', text: 'What is it?' },
+        { href: 'how-does-it-works', text: 'How Does it work?' },
+        { href: 'whos-it-for', text: "Who's it for?" },
+        { href: 'features', text: 'Features' }
+      ]
     }
   },
   async mounted() {
@@ -105,6 +104,14 @@ export default {
         )
         .staggerTo([menuLogo, closeIcon], 0.5, { opacity: 1 })
         .to(menuButton, 0.25, { opacity: 1 })
+    },
+    goToSection({ href }) {
+      const activeSection = document.querySelector('section.section.active')
+      const activeAnchor = isElement(activeSection)
+        ? activeSection.getAttribute('data-anchor')
+        : ''
+      if (href === activeAnchor) return
+      this.$root.$emit('goToSection', href)
     },
     openModal() {
       this.$root.$emit('openModal')

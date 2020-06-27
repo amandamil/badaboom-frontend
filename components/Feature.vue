@@ -34,7 +34,7 @@ export default {
             el: '.feature__image',
             options: {
               name: 'fade-in-scale',
-              duration: 0.75,
+              duration: 0.5,
               delay: 0.5
             }
           },
@@ -42,7 +42,7 @@ export default {
             el: '.feature__title',
             options: {
               name: 'fade-in-up',
-              duration: 0.75,
+              duration: 0.5,
               delay: -0.25
             }
           },
@@ -50,7 +50,7 @@ export default {
             el: '.feature__description p',
             options: {
               name: 'fade-in-up',
-              duration: 0.75,
+              duration: 0.5,
               delay: -0.25
             }
           }

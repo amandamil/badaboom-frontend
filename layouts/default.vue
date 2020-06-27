@@ -25,15 +25,15 @@ export default {
     return {
       isShow: false,
       activeSection: 0,
-      inversionSections: [2, 11, 13, 14]
+      inversionSections: [2, 9, 10]
     }
   },
   computed: {
     isInversion() {
-      return this.inversionSections.includes(this.activeSection + 1)
+      return this.inversionSections.includes(this.activeSection)
     },
     isHideButton() {
-      return this.activeSection + 1 === 13
+      return this.activeSection === 10
     },
     inversionClass() {
       return this.isInversion ? 'inversion' : ''

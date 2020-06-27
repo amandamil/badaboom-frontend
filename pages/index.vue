@@ -9,10 +9,8 @@
       <SixthSection />
       <SeventhSection />
       <EighthSection />
-      <NinethSection />
-      <TenthSection />
       <FeaturesSection />
-      <QuoteSection />
+      <!-- <QuoteSection /> -->
       <SunglassesSection />
     </full-page>
   </no-ssr>
@@ -20,7 +18,7 @@
 
 <script>
 import NoSsr from 'vue-no-ssr'
-import FullPageMixin from './mixins/fullpage'
+import FullPageMixin from '~/mixins/fullpage'
 
 import FirstSection from '~/components/sections/FirstSection'
 import SecondSection from '~/components/sections/SecondSection'
@@ -30,10 +28,8 @@ import FifthSection from '~/components/sections/FifthSection'
 import SixthSection from '~/components/sections/SixthSection'
 import SeventhSection from '~/components/sections/SeventhSection'
 import EighthSection from '~/components/sections/EighthSection'
-import NinethSection from '~/components/sections/NinethSection'
-import TenthSection from '~/components/sections/TenthSection'
 import FeaturesSection from '~/components/sections/FeaturesSection'
-import QuoteSection from '~/components/sections/QuoteSection'
+// import QuoteSection from '~/components/sections/QuoteSection'
 import SunglassesSection from '~/components/sections/SunglassesSection'
 
 export default {
@@ -48,24 +44,10 @@ export default {
     SixthSection,
     SeventhSection,
     EighthSection,
-    NinethSection,
-    TenthSection,
     FeaturesSection,
-    QuoteSection,
+    // QuoteSection,
     SunglassesSection
   },
-  mixins: [FullPageMixin],
-  mounted() {
-    this.$root.$on('go-next', this.goToNext)
-    this.$root.$on('setAllowScrolling', this.setAllowScrollingHandler)
-  },
-  methods: {
-    goToNext() {
-      this.$refs.fullpage.api.moveSectionDown()
-    },
-    setAllowScrollingHandler(value) {
-      this.$refs.fullpage.api.setAllowScrolling(value)
-    }
-  }
+  mixins: [FullPageMixin]
 }
 </script>

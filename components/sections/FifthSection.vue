@@ -2,7 +2,7 @@
   <section class="section section--purple section--wdiw-3">
     <div class="container container--text-center">
       <div class="section__image">
-        <SquaresAnimation :delay="1.5" :green="true" />
+        <SquaresAnimation :delay="1.25" :green="true" />
       </div>
       <h2
         v-animate="animationOption"
@@ -27,8 +27,8 @@ export default {
     return {
       animationOption: {
         name: 'fade-in-up',
-        delay: 1,
-        duration: 1
+        delay: 0.75,
+        duration: 0.75
       }
     }
   }

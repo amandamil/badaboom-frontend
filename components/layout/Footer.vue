@@ -20,8 +20,12 @@
     <transition name="fade" mode="out-in">
       <div v-if="!hideButton" class="footer__arrow-down" @click="goToNext">
         <transition name="fade" mode="out-in">
-          <svg-icon v-if="inversion" name="arrow-down-gray" />
-          <svg-icon e-else name="arrow-down" />
+          <svg-icon
+            v-if="inversion"
+            key="arrow-down-gray"
+            name="arrow-down-gray"
+          />
+          <svg-icon v-else key="arrow-down" name="arrow-down" />
         </transition>
       </div>
     </transition>

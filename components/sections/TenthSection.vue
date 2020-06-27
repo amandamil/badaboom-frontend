@@ -26,21 +26,21 @@ export default {
             el: '.section-text__left',
             options: {
               name: 'split',
-              delay: 0.75,
-              duration: 1,
+              delay: 0.5,
+              duration: 0.75,
               splitText: true,
               splitTextMode: 'lines',
-              iterateDelay: 0.2
+              iterateDelay: 0.15
             }
           },
           {
             el: '.section-text__right',
             options: {
               name: 'split',
-              duration: 0.75,
+              duration: 0.5,
               splitText: true,
               splitTextMode: 'lines',
-              iterateDelay: 0.2
+              iterateDelay: 0.15
             }
           }
         ]

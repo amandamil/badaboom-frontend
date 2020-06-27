@@ -27,7 +27,7 @@ export default {
             options: {
               name: 'fade-in-up',
               delay: 1,
-              duration: 1
+              duration: 0.75
             }
           }
         ]
