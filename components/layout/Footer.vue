@@ -13,7 +13,7 @@
             transform="translate(-1206.526 -1727.726)"
           />
         </svg>
-        KEEP ME UPDATED
+        Request Access
       </button>
     </transition>
 

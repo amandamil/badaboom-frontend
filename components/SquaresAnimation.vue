@@ -1,5 +1,5 @@
 <template>
-  <div :class="['squares-animation', { opacity: green }]" @inview="play">
+  <div :class="['squares-animation', { green }]">
     <template v-if="squares.length">
       <svg-icon
         v-for="(square, index) in squares"
@@ -13,7 +13,7 @@
         v-for="(isGreen, index) in greenSunglassesArray"
         :key="index"
         name="sunglass-square"
-        :class="[classes[index], { green: isGreen }]"
+        :class="[classes[index], { green: isGreen }, 'opacity']"
       />
     </template>
     <template v-else>
@@ -29,6 +29,10 @@
 export default {
   name: 'SquaresAnimation',
   props: {
+    play: {
+      type: Boolean,
+      default: false
+    },
     delay: {
       type: Number,
       default: 1
@@ -49,15 +53,26 @@ export default {
       classes: ['left-top', 'right-top', 'left-bottom', 'right-bottom']
     }
   },
+  watch: {
+    play(value) {
+      if (value) {
+        TweenMax.set(this.$el, { opacity: 1 })
+        this.tl.play()
+      } else {
+        TweenMax.to(this.$el, 0.5, { opacity: 0 })
+        // this.tl.reverse()
+        setTimeout(() => {
+          this.tl.stop()
+          this.tl.progress(0)
+          this.onReverseComplete()
+        }, 500)
+      }
+    }
+  },
   created() {
     this.setGreenSquares()
   },
-  beforeDestroy() {
-    this.$observer.unobserve(this.$el)
-  },
   async mounted() {
-    this.$observer.observe(this.$el)
-
     await this.$nextTick()
     this.setAnimation()
   },
@@ -71,29 +86,36 @@ export default {
     },
     setAnimation() {
       const options = { opacity: 1, scale: 1, ease: Back.easeOut }
-      if (this.green) {
-        this.tl = new TimelineMax({
-          paused: true,
-          delay: this.delay,
-          onComplete: this.onComplete
-        })
-        this.tl.to(this.$el, 0.5, options)
-        return
+      let timelineOption = {
+        paused: true,
+        delay: this.delay
       }
 
-      this.tl = new TimelineMax({ paused: true, delay: this.delay })
+      if (this.green) {
+        timelineOption = {
+          ...timelineOption,
+          onComplete: this.onComplete
+        }
+      }
+
+      this.tl = new TimelineMax(timelineOption)
       this.tl.staggerTo(this.$el.querySelectorAll('svg'), 0.5, options, 0.25)
-    },
-    play() {
-      this.tl.play()
     },
     onComplete() {
       TweenMax.staggerTo(
         this.$el.querySelectorAll('.green'),
         0.5,
-        { delay: 0.5, backgroundColor: '#D1FF7A' },
+        { backgroundColor: '#D1FF7A' },
         0.25
       )
+    },
+    onReverseComplete() {
+      const greenSquares = this.$el.querySelectorAll('.green')
+      if (greenSquares.length) {
+        TweenMax.set(this.$el.querySelectorAll('.green'), {
+          backgroundColor: 'transparent'
+        })
+      }
     },
     getTwoNumbers() {
       const first = this.getRandomFromRange(0, 3)
@@ -113,6 +135,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import '~/assets/scss/partials/_variables';
+
 .squares-animation {
   width: 520px;
   display: flex;
@@ -146,11 +170,6 @@ export default {
   .right-bottom {
     margin-right: 0;
   }
-
-  &.opacity {
-    opacity: 0;
-    transform: scale(0.85);
-  }
 }
 
 @media screen and (max-width: 1440px) {
@@ -177,9 +196,27 @@ export default {
       flex-basis: 100%;
       margin: 0;
 
-      &:not(:first-child) {
+      &:not(:last-child) {
         display: none;
       }
+    }
+
+    &.green {
+      svg {
+        background-color: $green;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .squares-animation {
+    width: 200px;
+    height: 200px;
+
+    svg {
+      width: 200px;
+      height: 200px;
     }
   }
 }

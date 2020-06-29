@@ -28,13 +28,16 @@ export default {
     ],
     script: [
       {
-        src: '/js/typeform.js'
+        src: '/js/typeform.js',
+        defer: true
       },
       {
-        src: '/js/intercom.js'
+        src: '/js/intercom.js',
+        defer: true
       },
       {
-        src: '/js/jquery-3.5.1.min.js'
+        src: '/js/jquery-3.5.1.min.js',
+        defer: true
       }
     ]
   },

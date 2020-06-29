@@ -151,17 +151,18 @@ body {
 				padding: 4px 10px;
 				transition: all .3s ease;
 
+				&.active,
 				&:hover {
 					color: $gray;
 					background-color: $green;
 				}
 			}
 
-			&.active {
-				a {
-					background-color: $gray;
-				}
-			}
+			// &.active {
+			// 	a {
+			// 		background-color: $gray;
+			// 	}
+			// }
 		}
 	}
 
@@ -273,15 +274,10 @@ body {
 				a {
 					color: $gray;
 	
+					&.active,
 					&:hover {
 						color: $green;
 						background-color: $gray;
-					}
-				}
-	
-				&.active {
-					a {
-						background-color: $green;
 					}
 				}
 			}
@@ -319,16 +315,8 @@ body {
 	width: 100%;
 	padding: 0 5%;
 	margin: auto;
-
-	.scalable-logo {
-		width: 775px;
-		margin: 0 auto;
-	}
-
-	&--text-center {
-		display: flex;
-		align-items: center;
-	}
+	display: flex;
+    align-items: center;
 }
 
 .section {
@@ -365,6 +353,23 @@ body {
 		}
 	}
 
+	&--it-works {
+		.container {
+			position: relative;
+	  
+			.section-block {
+				display: flex;
+				align-items: center;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				padding: 0 5%;
+			}
+		}
+	}
+
 	&--what-is-it {
 		.section {
 			&__image {
@@ -381,7 +386,15 @@ body {
 		}
 	}
 
-	&--wdiw-1 {
+	&--feature-gray {
+		.container {
+			background-color: $silver-light;
+		}
+	}
+}
+
+.section-block {
+	&--one {
 		.section {
 			&__image {
 				padding-left: 7%;
@@ -395,7 +408,7 @@ body {
 		}
 	}
 
-	&--wdiw-2 {
+	&--two {
 		.section {
 			&__image {
 				display: inline-flex;
@@ -415,7 +428,7 @@ body {
 		}
 	}
 
-	&--wdiw-3 {
+	&--three {
 		.section {
 			&__image {
 				padding-left: 7%;
@@ -424,7 +437,7 @@ body {
 	}
 
 
-	&--wdiw-4 {
+	&--four {
 		.section {
 			&__image {
 				display: inline-flex;
@@ -444,9 +457,15 @@ body {
 		}
 	}
 
-	&--feature-gray {
-		.container {
-			background-color: $silver-light;
+	&--text-center {
+		display: flex;
+		align-items: center;
+
+		.section-title {
+			&--scalable-logo {
+				width: 775px;
+				margin: 0 auto;
+			}
 		}
 	}
 }
@@ -454,10 +473,14 @@ body {
 .section-title {
 	display: block;
 	margin: auto;
-	font-size: 66px;
+	font-size: 55px;
 	font-weight: 600;
 	text-align: center;
 	text-transform: uppercase;
+
+	&__green {
+		color: $green;
+	}
 
 	&--small {
 		text-align: left;
@@ -709,8 +732,8 @@ body {
 }
 
 @media screen and (max-width: 1440px) {
-	.section {
-		&--wdiw-1 {
+	.section-block {
+		&--one {
 			.section {
 				&__image {
 					svg {
@@ -843,6 +866,10 @@ body {
 			justify-content: center;
 		}
 
+		&--it-works {
+
+		}
+
 		&--what-is-it {
 			.sunglass-flashing {
 				width: 300px;
@@ -874,12 +901,12 @@ body {
 				}
 			}
 		}
+	}
 
-		&--wdiw-1 {
-			.container {
-				flex-direction: column-reverse;
-				justify-content: center;
-			}
+	.section-block {
+		&--one {
+			flex-direction: column-reverse;
+			justify-content: center;
 
 			.section {
 				&__image {
@@ -895,12 +922,10 @@ body {
 			}
 		}
 
-		&--wdiw-2,
-		&--wdiw-4 {
-			.container {
-				flex-direction: column;
-				justify-content: center;
-			}
+		&--two,
+		&--four {
+			flex-direction: column;
+			justify-content: center;
 
 			.section {
 				&__image {
@@ -917,11 +942,9 @@ body {
 			}
 		}
 
-		&--wdiw-3 {
-			.container {
-				flex-direction: column-reverse;
-				justify-content: center;
-			}
+		&--three {
+			flex-direction: column-reverse;
+			justify-content: center;
 
 			.section {
 				&__image {
@@ -987,14 +1010,44 @@ body {
 		}
 	}
 
-	.section {
-		&--wdiw-1 {
+	.section-title {
+		font-size: 23px;
+	}
+
+	.section-text {
+		font-size: 26px;
+
+		&__left {
+			margin-bottom: 30px;
+		}
+	}
+
+	.section-block {
+		&--one {
 			.section {
 				&__image {
 					svg {
-						width: 284px;
-						height: 284px;
+						width: 240px;
+    					height: 240px;
 					}
+				}
+			}
+		}
+
+		&--two,
+		&--three,
+		&--four {
+			.section-title {
+				margin-bottom: 30px;
+			}
+		}
+	}
+
+	.section {
+		&--what-is-it {
+			.section-title {
+				&--second {
+					font-size: 23px;
 				}
 			}
 		}
@@ -1044,6 +1097,17 @@ body {
 			&-button {
 				width: 100%;
 			}
+		}
+	}
+
+	.sunglasses-container {
+		&__title {
+			font-size: 23px;
+			margin-bottom: 30px;
+		}
+
+		&__slider {
+			margin-bottom: 40px;
 		}
 	}
 

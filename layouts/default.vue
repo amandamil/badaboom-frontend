@@ -25,7 +25,7 @@ export default {
     return {
       isShow: false,
       activeSection: 0,
-      inversionSections: [2, 9, 10]
+      inversionSections: [2, 5, 6]
     }
   },
   computed: {
@@ -33,7 +33,7 @@ export default {
       return this.inversionSections.includes(this.activeSection)
     },
     isHideButton() {
-      return this.activeSection === 10
+      return this.activeSection === 6
     },
     inversionClass() {
       return this.isInversion ? 'inversion' : ''

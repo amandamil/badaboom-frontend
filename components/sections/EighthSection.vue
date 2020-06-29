@@ -40,6 +40,9 @@ export default {
     },
     rightText() {
       return this.rightTexts[this.step]
+    },
+    sectionAnchor() {
+      return this.$el.getAttribute('data-anchor')
     }
   },
   watch: {
@@ -60,11 +63,13 @@ export default {
   },
   beforeDestroy() {
     this.$observer.unobserve(this.$el)
+    this.$root.$off('afterLoad', this.afterLoadHander)
     this.$root.$off('onLeave', this.debounceHandler)
     this.$root.$off('onGoToSection', this.onNavigateHandler)
   },
   mounted() {
     this.$observer.observe(this.$el)
+    this.$root.$on('afterLoad', this.afterLoadHander)
     this.$root.$on('onLeave', this.debounceHandler)
     this.$root.$on('onGoToSection', this.onNavigateHandler)
     this.resetAnimation()
@@ -97,6 +102,19 @@ export default {
         0
       )
     },
+    afterLoadHander({ direction, anchor, displaySectionStart }) {
+      if (this.sectionAnchor !== anchor) return
+      this.$root.$emit('setBlockScroll', { down: true, up: true })
+
+      if (direction === 'down' || displaySectionStart) {
+        this.preStep = 0
+        this.setStep(0)
+      } else {
+        const maxStep = this.greenTexts.length - 1
+        this.preStep = maxStep
+        this.setStep(maxStep)
+      }
+    },
     debounceHandler: debounce(
       function() {
         this.handleOnLeave(...arguments)
@@ -107,7 +125,7 @@ export default {
         trailing: false
       }
     ),
-    handleOnLeave({ section, nextSection, direction }) {
+    handleOnLeave({ section, nextSection, direction, displaySectionStart }) {
       if (this.$el.isEqualNode(nextSection.item)) {
         this.playAnimation()
       }
@@ -129,6 +147,7 @@ export default {
           this.increasePreStep()
           return
         case direction === 'up' && this.step === 0:
+          if (displaySectionStart) return
           this.enableScrolling()
           this.$root.$emit('go-prev')
           return
@@ -139,7 +158,6 @@ export default {
       }
     },
     onNavigateHandler(anchor) {
-      debugger
       const section = document.querySelector(`[data-anchor=${anchor}]`)
       if (this.$el.isEqualNode(section)) {
         this.playAnimation()

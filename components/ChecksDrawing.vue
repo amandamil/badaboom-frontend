@@ -1,6 +1,6 @@
 <template>
   <!-- eslint-disable prettier/prettier -->
-  <svg xmlns="http://www.w3.org/2000/svg" width="525" height="524.584" viewBox="0 0 525 524.584" @inview="play">
+  <svg xmlns="http://www.w3.org/2000/svg" width="525" height="524.584" viewBox="0 0 525 524.584" style="opacity: 0;">
   <g id="Step_01" transform="translate(-29 -33.17)">
     <g id="Group_106" data-name="Group 106" transform="translate(34.318 38.549)">
       <rect id="Rectangle_5" data-name="Rectangle 5" width="513.397" height="0.636" transform="translate(0.315 0)" fill="#9f9f9f"/>
@@ -137,6 +137,10 @@
 export default {
   name: 'ChecksDrawing',
   props: {
+    play: {
+      type: Boolean,
+      default: false
+    },
     delay: {
       type: Number,
       default: 1
@@ -147,12 +151,20 @@ export default {
       tl: null
     }
   },
-  beforeDestroy() {
-    this.$observer.unobserve(this.$el)
+  watch: {
+    play(value) {
+      if (value) {
+        this.tl.play()
+      } else {
+        TweenMax.to(this.$el, 0.5, { opacity: 0 })
+        setTimeout(() => {
+          this.tl.stop()
+          this.tl.progress(0)
+        }, 500)
+      }
+    }
   },
   async mounted() {
-    this.$observer.observe(this.$el)
-
     await this.$nextTick()
     this.setAnimation()
   },
@@ -178,9 +190,6 @@ export default {
         .set(this.$el, { opacity: 0 })
         .to(this.$el, 0.25, { opacity: 1, ease })
         .staggerTo(paths, 0.25, { drawSVG: '100%', ease }, 0.25)
-    },
-    play() {
-      this.tl.play()
     }
   }
 }

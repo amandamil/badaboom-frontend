@@ -3,7 +3,7 @@
   <section class="section section--green section--feature-gray">
     <div class="container container--text-center">
       <div class="features">
-        <div class="features__wrapper">
+        <div ref="wrapper" class="features__wrapper">
           <div class="section-start" />
           <h2 v-animate="animationOption" class="features__title">What’s under the hood?</h2>
           <div class="features__list">
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import debounce from 'lodash/debounce'
 import throttle from 'lodash/throttle'
 import Feature from '~/components/Feature'
 
@@ -34,6 +35,7 @@ export default {
   data() {
     return {
       preventTransition: false,
+      onLoaded: false,
       animationOption: {
         name: 'fade-in-up',
         duration: 0.75,
@@ -104,29 +106,63 @@ export default {
       ]
     }
   },
+  computed: {
+    sectionAnchor() {
+      return this.$el.getAttribute('data-anchor')
+    }
+  },
   beforeDestroy() {
+    this.$root.$off('afterLoad', this.afterLoadHandler)
     this.$el
       .querySelector('.features')
       .removeEventListener('scroll', this.throttleScrollHandler)
   },
   async mounted() {
     await this.$nextTick()
+    this.$root.$on('afterLoad', this.afterLoadHandler)
+    this.$root.$on('onLeave', this.debounceHandler)
     this.$el
       .querySelector('.features')
       .addEventListener('scroll', this.throttleScrollHandler)
   },
   methods: {
-    throttleScrollHandler: throttle(
+    throttleScrollHandler: throttle(function() {
+      this.scrollHandler(...arguments)
+    }, 500),
+    debounceHandler: debounce(
       function() {
-        this.scrollHandler(...arguments)
+        this.handleOnLeave(...arguments)
       },
       500,
-      { leading: false }
+      {
+        leading: true,
+        trailing: false
+      }
     ),
+    handleOnLeave({ section, nextSection, direction, displaySectionStart }) {
+      if (
+        !this.$el.isEqualNode(nextSection.item) &&
+        this.$el.isEqualNode(section.item) &&
+        this.onLoaded &&
+        direction === 'up'
+      ) {
+        this.$root.$emit('setBlockScroll', { down: false, up: false })
+        this.$root.$emit('go-prev')
+      }
+    },
+    afterLoadHandler({ direction, anchor }) {
+      if (this.sectionAnchor !== anchor) return
+      this.$root.$emit('setBlockScroll', { down: true, up: true })
+
+      if (direction === 'down') {
+        this.onLoaded = true
+      }
+    },
     scrollHandler(e) {
       const elHeight = $(this.$el).height()
       const startOffset = $('.section-start').offset().top
       const endOffset = $('.section-end').offset().top
+      this.onLoaded = false
 
       if (endOffset < elHeight) {
         this.$root.$emit('setBlockScroll', { down: false, up: false })
@@ -188,7 +224,7 @@ export default {
 
   &__wrapper {
     position: relative;
-    padding: 200px 5%;
+    padding: 200px 5% 350px;
   }
 
   &__list {
@@ -213,7 +249,9 @@ export default {
 
 @media screen and (max-width: 1200px) {
   .features {
-    padding: 150px 0;
+    &__wrapper {
+      padding: 150px 5%;
+    }
 
     &__list {
       .feature {
@@ -243,10 +281,14 @@ export default {
 
 @media screen and (max-width: 768px) {
   .features {
-    padding: 150px 0;
+    &__wrapper {
+      padding: 100px 5%;
+    }
 
     &__title {
+      font-size: 26px;
       margin-bottom: 45px;
+      text-align: center;
     }
 
     &__list {
@@ -272,9 +314,16 @@ export default {
         }
       }
     }
+  }
+
+  .feature {
+    &__image {
+      margin-bottom: 25px;
+    }
 
     &__title {
-      text-align: center;
+      font-size: 23px;
+      margin-bottom: 20px;
     }
   }
 }
