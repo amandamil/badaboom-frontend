@@ -1,5 +1,11 @@
 <template>
   <div class="section section--first">
+    <video v-if="isMobile" class="section__background" autoplay muted loop>
+      <source src="~assets/videos/background-mobile.mp4" type="video/mp4" />
+    </video>
+    <video v-else class="section__background" autoplay muted loop>
+      <source src="~assets/videos/background-desktop.mp4" type="video/mp4" />
+    </video>
     <div class="container container--text-center">
       <h1
         v-animate="animationOption"
@@ -32,6 +38,13 @@ export default {
           }
         ]
       }
+    }
+  },
+  computed: {
+    isMobile() {
+      return !!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
     }
   }
 }

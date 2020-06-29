@@ -52,23 +52,53 @@ export default {
     play() {
       this.tl.play()
     },
+    // setFilter(value) {
+    //   const filters = {
+    //     brightness: '0.3',
+    //     grayscale: '100%'
+    //   }
+    //   this.$refs.sunglass.style.filter = `${filters.brightness} ${filters.grayscale}`
+    //   debugger
+    //   // console.log('filters >>', )
+    // },
     setAnimation() {
-      const { sunglass, brightBorder } = this.$refs
-      const toSunglassOptions = {
-        '-webkit-filter': 'brightness(1) grayscale(0%)',
-        filter: 'brightness(1) grayscale(0%)',
-        ease: Bounce.easeOut
+      const { brightBorder } = this.$refs
+      // const toSunglassOptions = {
+      //   webkitFilter: 'brightness(1) grayscale(0%)',
+      //   filter: 'brightness(1) grayscale(0%)',
+      //   ease: Bounce.easeOut
+      // }
+      const filters = {
+        brightness: '0.3'
+        // grayscale: '100%'
       }
 
       this.tl = new TimelineMax({
         paused: true,
         repeat: -1,
         yoyo: true,
-        delay: this.delay
+        delay: this.delay,
+        onUpdate: () => {
+          this.$refs.sunglass.style.filter = `${filters.brightness}` // ${filters.grayscale}`
+        }
       })
-      this.tl
         .to(brightBorder, 1, { opacity: 1, ease: Bounce.easeOut })
-        .to(sunglass, 1, toSunglassOptions, '-=1')
+        .to(
+          filters,
+          1,
+          { brightness: '1' }, // grayscale: '0%', ease: Bounce.easeOut },
+          '-=1'
+        )
+
+      // this.tl = new TimelineMax({
+      //   paused: true,
+      //   repeat: -1,
+      //   yoyo: true,
+      //   delay: this.delay
+      // })
+      // this.tl
+      //   .to(brightBorder, 1, { opacity: 1, ease: Bounce.easeOut })
+      //   .to(sunglass, 1, toSunglassOptions, '-=1')
     }
   }
 }
@@ -82,6 +112,7 @@ export default {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    -webkit-filter: brightness(0.3) grayscale(100%);
     filter: brightness(0.3) grayscale(100%);
     transition: all 0.3s ease;
   }
