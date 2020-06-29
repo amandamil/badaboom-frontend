@@ -1,24 +1,7 @@
 <template>
   <div :class="['section section--first', { active: activeSection }]">
     <div class="container container--text-center">
-      <video
-        v-if="isMobile"
-        class="section__background mobile"
-        data-autoplay
-        muted
-        loop
-        playsinline
-      >
-        <source src="~assets/videos/background-mobile.mp4" type="video/mp4" />
-      </video>
-      <video
-        v-else
-        loop
-        muted
-        data-autoplay
-        playsinline
-        class="section__background"
-      >
+      <video loop muted data-autoplay playsinline class="section__background">
         <source src="~assets/videos/background-desktop.mp4" type="video/mp4" />
       </video>
       <h1
@@ -56,11 +39,6 @@ export default {
     }
   },
   computed: {
-    isMobile() {
-      return !!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      )
-    },
     activeSection() {
       return this.actice === 1
     }
