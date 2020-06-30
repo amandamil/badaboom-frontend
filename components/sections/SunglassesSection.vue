@@ -20,7 +20,7 @@
           </Flickity>
         </no-ssr>
         <button class="sunglasses-container__button" @click="openModal">
-          <svg-icon name="right-arrow" />KEEP ME UPDATED
+          <svg-icon name="right-arrow" />REQUEST ACCESS
         </button>
       </div>
     </div>

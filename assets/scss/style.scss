@@ -105,16 +105,17 @@ body {
 		&-button {
 			display: none;
 			opacity: 0;
-			width: 350px;
+			width: 300px;
 			max-width: 100%;
 			position: absolute;
-			bottom: 5px;
+			bottom: 50px;
 			left: 0;
 			right: 0;
 			margin: auto;
 			background-color: transparent;
-			padding: 20px 20px;
-			color: $silver;
+			border: 1px $green solid;
+			padding: 16px 55px;
+			color: $green;
 			font-weight: 600;
 			font-size: 15px;
 			text-transform: uppercase;
@@ -868,8 +869,14 @@ body {
 	.footer {
 		padding: 15px;
 
-		&__arrow-down {
+		&__button {
 			display: none;
+		}
+
+		&__arrow-down {
+			top: -30%;
+			margin-left: 0;
+			padding: 20px;
 		}
 	}
 	
@@ -1120,13 +1127,6 @@ body {
 
 // Small devices (landscape phones, 576px and down)
 @media screen and (max-width: 576px) {
-	.header {
-		&__navigation {
-			&-button {
-				width: 100%;
-			}
-		}
-	}
 
 	.sunglasses-container {
 		&__title {

@@ -20,7 +20,7 @@
         <svg-icon name="logo" />
       </div>
       <div ref="menuButton" class="header__navigation-button" @click="openModal">
-        <svg-icon name="arrow-right-gray" />GET IN TOUCH
+        <svg-icon name="arrow-right-gray" />REQUEST ACCESS
       </div>
     </nav>
     <div class="header__menu">
