@@ -867,16 +867,15 @@ body {
 	}
 
 	.footer {
-		padding: 15px;
+		padding: 35px;
 
 		&__button {
 			display: none;
 		}
 
 		&__arrow-down {
-			top: -30%;
-			margin-left: 0;
-			padding: 20px;
+			right: inherit;
+			left: 10px;
 		}
 	}
 	
