@@ -18,7 +18,8 @@
       <div class="section__image">
         <SunglassFlashing
           v-animate="{ name: 'fade-in', delay: 1.5, duration: 0.75 }"
-          :image="require('~/assets/images/sunglass-with-shadow.png')"
+          :image="image"
+          :image-gray="imageGray"
         />
       </div>
     </div>
@@ -36,6 +37,8 @@ export default {
   data() {
     return {
       words: ['The Quicker way', 'The Smarter way', 'The New way'],
+      image: require('~/assets/images/sunglass-with-shadow.png'),
+      imageGray: require('~/assets/images/sunglass-with-shadow--gray.png'),
       animationOption: {
         stagger: [
           {

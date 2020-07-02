@@ -15,7 +15,7 @@
               :key="i"
               class="sunglasses-container__item"
             >
-              <SunglassFlashing :image="image" :delay="0.5" />
+              <SunglassFlashing :image="image.image" :image-gray="image.imageGray" :delay="0.5" />
             </div>
           </Flickity>
         </no-ssr>
@@ -50,12 +50,30 @@ export default {
         autoPlay: 3000
       },
       sliderImages: [
-        require('~/assets/images/sunglass-blue.png'),
-        require('~/assets/images/sunglass-violet.png'),
-        require('~/assets/images/sunglass-pink.png'),
-        require('~/assets/images/sunglass-blue-light.png'),
-        require('~/assets/images/sunglass-gray-light.png'),
-        require('~/assets/images/sunglass-with-shadow.png')
+        {
+          image: require('~/assets/images/sunglass-blue.png'),
+          imageGray: require('~/assets/images/sunglass-blue--gray.png')
+        },
+        {
+          image: require('~/assets/images/sunglass-violet.png'),
+          imageGray: require('~/assets/images/sunglass-violet--gray.png')
+        },
+        {
+          image: require('~/assets/images/sunglass-pink.png'),
+          imageGray: require('~/assets/images/sunglass-pink--gray.png')
+        },
+        {
+          image: require('~/assets/images/sunglass-blue-light.png'),
+          imageGray: require('~/assets/images/sunglass-blue-light--gray.png')
+        },
+        {
+          image: require('~/assets/images/sunglass-gray-light.png'),
+          imageGray: require('~/assets/images/sunglass-gray-light--gray.png')
+        },
+        {
+          image: require('~/assets/images/sunglass-with-shadow.png'),
+          imageGray: require('~/assets/images/sunglass-with-shadow--gray.png')
+        }
       ],
       animationOption: {
         stagger: [

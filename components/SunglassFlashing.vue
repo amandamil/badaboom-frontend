@@ -1,10 +1,16 @@
 <template>
   <!-- eslint-disable prettier/prettier -->
-  <div class="sunglass-flashing" @inview="play">
+  <div class="sunglass-flashing">
     <img
       ref="sunglass"
       :src="image"
       class="sunglass-flashing__image"
+      alt="sunglass"
+    />
+    <img
+      ref="gray"
+      :src="imageGray"
+      class="sunglass-flashing__image gray"
       alt="sunglass"
     />
     <img
@@ -30,45 +36,18 @@ export default {
       type: String,
       required: true
     },
+    imageGray: {
+      type: String,
+      required: true
+    },
     delay: {
       type: Number,
       default: 1.5
     }
   },
-  data() {
-    return {
-      tl: null
-    }
-  },
-  beforeDestroy() {
-    this.$observer.unobserve(this.$el)
-  },
-  async mounted() {
-    this.$observer.observe(this.$el)
-    await this.$nextTick()
-    this.setAnimation()
-  },
-  methods: {
-    play() {
-      this.tl.play()
-    },
-    setAnimation() {
-      const { sunglass, brightBorder } = this.$refs
-      const toSunglassOptions = {
-        '-webkit-filter': 'brightness(1) grayscale(0%)',
-        filter: 'brightness(1) grayscale(0%)',
-        ease: Bounce.easeOut
-      }
-
-      this.tl = new TimelineMax({
-        paused: true,
-        repeat: -1,
-        yoyo: true,
-        delay: this.delay
-      })
-      this.tl
-        .to(brightBorder, 1, { opacity: 1, ease: Bounce.easeOut })
-        .to(sunglass, 1, toSunglassOptions, '-=1')
+  computed: {
+    isSafari() {
+      return /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
     }
   }
 }
@@ -79,11 +58,14 @@ export default {
   position: relative;
 
   &__image {
+    position: absolute;
     width: 100%;
     height: 100%;
     object-fit: contain;
-    filter: brightness(0.3) grayscale(100%);
-    transition: all 0.3s ease;
+
+    &.gray {
+      animation: flashing 1s ease-out 0.25s infinite alternate-reverse;
+    }
   }
 
   &__border {
@@ -94,8 +76,36 @@ export default {
     opacity: 0.8;
 
     &.bright {
-      opacity: 0;
+      animation: reverseFlashing 1s ease-out 0s infinite alternate-reverse;
     }
+  }
+}
+
+@keyframes flashing {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes reverseFlashing {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
 </style>
