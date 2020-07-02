@@ -85,7 +85,8 @@ export default {
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/google-analytics'
   ],
   /*
    ** Nuxt.js modules
@@ -94,6 +95,9 @@ export default {
   svgSprite: {
     input: '~/assets/images/svg/',
     elementClass: 'icon'
+  },
+  googleAnalytics: {
+    id: 'UA-171475538-1'
   },
   /*
    ** Build configuration
