@@ -151,6 +151,17 @@ export default {
     onReverseComplete() {
       this.played = false
     },
+    hideSectionContent() {
+      const title = this.titles[this.step]
+      const image = this.images[this.step]
+      if (isElement(title)) {
+        TweenMax.to(title, 0.5, { opacity: 0, y: 30 })
+      }
+
+      if (isElement(image)) {
+        TweenMax.to(image, 0.5, { opacity: 0 })
+      }
+    },
     play(step, prevStep) {
       const tl = new TimelineMax()
       const prevTitle = this.titles[prevStep]
@@ -227,7 +238,11 @@ export default {
       }
     },
     afterLoadHander({ direction, anchor, displaySectionStart }) {
-      if (this.sectionAnchor !== anchor) return
+      if (this.sectionAnchor !== anchor) {
+        this.hideSectionContent()
+        return
+      }
+
       if (direction === 'down' || displaySectionStart) {
         this.step = 0
         if (this.played) {

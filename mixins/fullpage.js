@@ -119,6 +119,7 @@ export default {
     this.$root.$on('setAllowScrolling', this.setAllowScrollingHandler)
     this.$root.$on('setPreventScroll', this.setPreventScrollHandler)
     this.$root.$on('goToSection', this.goToSection)
+    this.$root.$on('setNormalScroll', this.normalScrollElementsHandler)
   },
   beforeDestoy() {
     this.$root.$off('go-next', this.goToNext)
@@ -129,6 +130,7 @@ export default {
     this.$root.$off('setAllowScrolling', this.setAllowScrollingHandler)
     this.$root.$off('setBlockScroll', this.setBlockScroll)
     this.$root.$off('goToSection', this.goToSection)
+    this.$root.$off('setNormalScroll', this.normalScrollElementsHandler)
   },
   methods: {
     goToNext() {
@@ -157,6 +159,9 @@ export default {
     },
     setBlockScroll(value) {
       this.blockScroll = value
+    },
+    normalScrollElementsHandler(value) {
+      this.normalScrollElements = value
     },
     callFullPageMethod(method, args = []) {
       const isFullpage = isObject(this.$refs.fullpage)

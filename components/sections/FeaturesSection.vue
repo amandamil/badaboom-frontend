@@ -15,6 +15,7 @@
               :paragraphs="feature.paragraphs"
             />
           </div>
+          <div class="features__overlay" />
           <div class="section-end" />
         </div>
       </div>
@@ -152,9 +153,13 @@ export default {
     },
     afterLoadHandler({ direction, anchor }) {
       if (this.sectionAnchor !== anchor) return
-      this.$root.$emit('setBlockScroll', { down: true, up: true })
+
+      if (direction === 'up') {
+        this.$root.$emit('setBlockScroll', { down: false, up: true })
+      }
 
       if (direction === 'down') {
+        this.$root.$emit('setBlockScroll', { down: true, up: true })
         this.onLoaded = true
       }
     },
@@ -167,12 +172,16 @@ export default {
       if (endOffset < elHeight) {
         this.$root.$emit('setBlockScroll', { down: false, up: false })
         this.$root.$emit('go-next')
+        return
       }
 
       if (startOffset >= 0) {
         this.$root.$emit('setBlockScroll', { down: false, up: false })
         this.$root.$emit('go-prev')
+        return
       }
+
+      this.$root.$emit('setBlockScroll', { down: true, up: true })
     }
   }
 }
@@ -213,6 +222,15 @@ export default {
     width: 100%;
     opacity: 0;
     height: 1px;
+  }
+
+  &__overlay {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
   }
 
   &__title {

@@ -103,9 +103,25 @@ export default {
       }
     }
   },
+  computed: {
+    sectionAnchor() {
+      return this.$el.getAttribute('data-anchor')
+    }
+  },
+  beforeDestroy() {
+    this.$root.$off('afterLoad', this.afterLoadHandler)
+  },
+  mounted() {
+    this.$root.$on('afterLoad', this.afterLoadHandler)
+  },
   methods: {
     openModal() {
       this.$root.$emit('openModal')
+    },
+    afterLoadHandler({ direction, anchor }) {
+      if (this.sectionAnchor !== anchor) return
+
+      this.$root.$emit('setBlockScroll', { down: false, up: false })
     }
   }
 }

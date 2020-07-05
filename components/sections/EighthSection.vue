@@ -26,6 +26,7 @@ export default {
       preStep: 0,
       step: 0,
       disabled: false,
+      disableAnimation: false,
       greenTexts: ['BRAND OWNERS', 'BUYERS', 'PRODUCT MANAGERS'],
       rightTexts: [
         'Create a beautiful and highly commercial private label quickly',
@@ -46,9 +47,14 @@ export default {
     }
   },
   watch: {
-    preStep(value) {
+    preStep(value, prevValue) {
       const { greenText, rightText } = this.$refs
       const tl = new TimelineMax()
+
+      if (this.disableAnimation) {
+        return
+      }
+
       tl.staggerTo([greenText, rightText], 0.5, {
         opacity: 0,
         onComplete: this.setStep.bind(null, value)
@@ -65,20 +71,14 @@ export default {
     this.$observer.unobserve(this.$el)
     this.$root.$off('afterLoad', this.afterLoadHander)
     this.$root.$off('onLeave', this.debounceHandler)
-    this.$root.$off('onGoToSection', this.onNavigateHandler)
   },
   mounted() {
     this.$observer.observe(this.$el)
     this.$root.$on('afterLoad', this.afterLoadHander)
     this.$root.$on('onLeave', this.debounceHandler)
-    this.$root.$on('onGoToSection', this.onNavigateHandler)
     this.resetAnimation()
   },
   methods: {
-    resetAll() {
-      this.setStep(0)
-      this.enableScrolling()
-    },
     increasePreStep() {
       this.preStep = this.preStep + 1
     },
@@ -88,11 +88,16 @@ export default {
     setStep(value) {
       this.step = value
     },
+    hideSectionContent() {
+      const { greenText, rightText } = this.$refs
+      TweenMax.set([greenText, rightText], { opacity: 0, y: 30 })
+    },
     resetAnimation() {
       const { greenText, rightText } = this.$refs
       TweenMax.to([greenText, rightText], 0.5, { opacity: 0, y: 30 })
     },
     playAnimation() {
+      this.disableAnimation = false
       const { greenText, rightText } = this.$refs
       TweenMax.staggerFromTo(
         [greenText, rightText],
@@ -103,17 +108,12 @@ export default {
       )
     },
     afterLoadHander({ direction, anchor, displaySectionStart }) {
-      if (this.sectionAnchor !== anchor) return
-      this.$root.$emit('setBlockScroll', { down: true, up: true })
-
-      if (direction === 'down' || displaySectionStart) {
-        this.preStep = 0
-        this.setStep(0)
-      } else {
-        const maxStep = this.greenTexts.length - 1
-        this.preStep = maxStep
-        this.setStep(maxStep)
+      if (this.sectionAnchor !== anchor) {
+        this.hideSectionContent()
+        return
       }
+
+      this.$root.$emit('setBlockScroll', { down: true, up: true })
     },
     debounceHandler: debounce(
       function() {
@@ -125,8 +125,25 @@ export default {
         trailing: false
       }
     ),
-    handleOnLeave({ section, nextSection, direction, displaySectionStart }) {
+    async handleOnLeave({
+      section,
+      nextSection,
+      direction,
+      displaySectionStart
+    }) {
       if (this.$el.isEqualNode(nextSection.item)) {
+        if (direction === 'down' || displaySectionStart) {
+          this.disableAnimation = true
+          this.preStep = 0
+          this.setStep(0)
+        } else {
+          this.disableAnimation = true
+          const maxStep = this.greenTexts.length - 1
+          this.preStep = maxStep
+          this.setStep(maxStep)
+        }
+
+        await this.$nextTick()
         this.playAnimation()
       }
 
@@ -157,12 +174,6 @@ export default {
           break
       }
     },
-    onNavigateHandler(anchor) {
-      const section = document.querySelector(`[data-anchor=${anchor}]`)
-      if (this.$el.isEqualNode(section)) {
-        this.playAnimation()
-      }
-    },
     inview() {
       this.disableScrolling()
     },
@@ -172,7 +183,6 @@ export default {
     },
     enableScrolling() {
       this.disabled = false
-      this.resetAnimation()
       this.$root.$emit('setBlockScroll', { down: false, up: false })
     }
   }
