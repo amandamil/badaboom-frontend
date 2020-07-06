@@ -138,6 +138,7 @@ export default {
         .to(logo, 1.75, { scale: 110, ease: Power4.easeIn })
         .to(container, 0.75, options, '-=0.75')
         .to(logo, 0.15, { opacity: 0 })
+        .set(logo, { display: 'none' })
     },
     onStart() {
       this.$root.$emit('setAllowScrolling', false)

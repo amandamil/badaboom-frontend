@@ -159,7 +159,7 @@ export default {
       }
 
       if (direction === 'down') {
-        this.$root.$emit('setBlockScroll', { down: true, up: true })
+        this.$root.$emit('setBlockScroll', { down: true, up: false })
         this.onLoaded = true
       }
     },

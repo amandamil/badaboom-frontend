@@ -134,12 +134,15 @@ export default {
   },
   methods: {
     goToNext() {
+      console.log('goToNext >> ')
       this.callFullPageMethod('moveSectionDown')
     },
     goToPrev() {
+      console.log('goToPrev >> ')
       this.callFullPageMethod('moveSectionUp')
     },
     goToSection(anchor) {
+      console.log('goToSection >> ', anchor)
       this.$root.$emit('onGoToSection', anchor)
       this.setAllowScrollingHandler(true)
       this.setBlockScroll({ down: false, up: false })
@@ -149,6 +152,7 @@ export default {
       this.displaySectionStart = value
     },
     setAllowScrollingHandler(value, direction) {
+      console.log('setPreventScrollHandler >> ', value)
       this.callFullPageMethod('setAllowScrolling', arguments)
     },
     setPreventScrollHandler(value) {
@@ -158,6 +162,7 @@ export default {
       this.withoutTransition = array
     },
     setBlockScroll(value) {
+      console.log('setBlockScroll >> ', value)
       this.blockScroll = value
     },
     normalScrollElementsHandler(value) {
