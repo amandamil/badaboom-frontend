@@ -303,6 +303,10 @@ export default {
       padding: 100px 5%;
     }
 
+    &__overlay {
+      display: none;
+    }
+
     &__title {
       font-size: 26px;
       margin-bottom: 45px;
