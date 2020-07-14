@@ -156,6 +156,7 @@ export default {
       this.callFullPageMethod('setAllowScrolling', arguments)
     },
     setPreventScrollHandler(value) {
+      console.log('setPreventScrollHandler >> ', value)
       this.preventScroll = value
     },
     updateWithoutHandler(array) {

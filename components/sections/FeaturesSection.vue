@@ -35,6 +35,7 @@ export default {
   },
   data() {
     return {
+      scrollValues: [],
       preventTransition: false,
       onLoaded: false,
       animationOption: {
@@ -127,9 +128,16 @@ export default {
       .addEventListener('scroll', this.throttleScrollHandler)
   },
   methods: {
-    throttleScrollHandler: throttle(function() {
-      this.scrollHandler(...arguments)
-    }, 500),
+    throttleScrollHandler: throttle(
+      function() {
+        this.scrollHandler(...arguments)
+      },
+      500,
+      {
+        leading: false,
+        trailing: true
+      }
+    ),
     debounceHandler: debounce(
       function() {
         this.handleOnLeave(...arguments)
@@ -152,7 +160,12 @@ export default {
       }
     },
     afterLoadHandler({ direction, anchor }) {
-      if (this.sectionAnchor !== anchor) return
+      if (this.sectionAnchor !== anchor) {
+        this.scrollValues = []
+        return
+      }
+
+      this.$root.$emit('setAllowScrolling', true)
 
       if (direction === 'up') {
         this.$root.$emit('setBlockScroll', { down: false, up: true })
@@ -169,15 +182,28 @@ export default {
       const endOffset = $('.section-end').offset().top
       this.onLoaded = false
 
+      let direction
+      if (this.scrollValues.length === 2) {
+        const [prev, next] = this.scrollValues
+        direction = prev > next ? 'down' : 'up'
+        this.scrollValues = [next, endOffset]
+      } else {
+        this.scrollValues.push(endOffset)
+      }
+
+      if (!direction) return
+
       if (endOffset < elHeight) {
         this.$root.$emit('setBlockScroll', { down: false, up: false })
         this.$root.$emit('go-next')
+        this.scrollValues = []
         return
       }
 
       if (startOffset >= 0) {
         this.$root.$emit('setBlockScroll', { down: false, up: false })
         this.$root.$emit('go-prev')
+        this.scrollValues = []
         return
       }
 

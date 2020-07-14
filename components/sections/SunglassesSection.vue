@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import debounce from 'lodash/debounce'
 import NoSsr from 'vue-no-ssr'
 import SunglassFlashing from '~/components/SunglassFlashing'
 
@@ -109,14 +110,35 @@ export default {
     }
   },
   beforeDestroy() {
+    this.$root.$off('onLeave', this.debounceHandler)
     this.$root.$off('afterLoad', this.afterLoadHandler)
   },
   mounted() {
+    this.$root.$on('onLeave', this.debounceHandler)
     this.$root.$on('afterLoad', this.afterLoadHandler)
   },
   methods: {
     openModal() {
       this.$root.$emit('openModal')
+    },
+    debounceHandler: debounce(
+      function() {
+        this.handleOnLeave(...arguments)
+      },
+      500,
+      {
+        leading: true,
+        trailing: false
+      }
+    ),
+    handleOnLeave({ section, nextSection, direction, displaySectionStart }) {
+      if (
+        !this.$el.isEqualNode(nextSection.item) &&
+        this.$el.isEqualNode(section.item) &&
+        direction === 'up'
+      ) {
+        this.$root.$emit('setAllowScrolling', false)
+      }
     },
     afterLoadHandler({ direction, anchor }) {
       if (this.sectionAnchor !== anchor) return

@@ -52,6 +52,7 @@ export default {
   },
   methods: {
     goToNext() {
+      this.$root.$emit('setBlockScroll', { down: false, up: false })
       this.$root.$emit('go-next')
     },
     openModal() {
